@@ -5,6 +5,13 @@ export const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
+export const userDashboardLinks = [
+  { href: "/dashboard", label: "Dashboard" },
+  { href: "/dashboard/profile", label: "Profile" },
+  { href: "/dashboard/upcoming-appointments", label: " Appointments" },
+  { href: "/dashboard/test-results", label: " Test Results" },
+];
+
 export const bloodGroups = [
   { label: "A+" },
   { label: "A-" },

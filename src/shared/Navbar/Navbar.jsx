@@ -3,8 +3,11 @@ import Button from "../Buttons/Button";
 import NavDrawer from "./NavDrawer";
 import { navLinks } from "../../constants";
 import { PlusSquareIcon } from "@chakra-ui/icons";
+import useAuth from "../../hooks/useAuth";
+import NavMenu from "./NavMenu";
 
 const Navbar = () => {
+  const { user } = useAuth();
   return (
     <nav className="bg-primary text-primary border border-b-2 border-dark">
       <div className="container mx-auto p-4 flex justify-between items-center">
@@ -33,9 +36,13 @@ const Navbar = () => {
           ))}
         </div>
         <div>
-          <Link to={"/login"}>
-            <Button variant={"outline"} label={"Login"} />
-          </Link>
+          {user ? (
+            <NavMenu />
+          ) : (
+            <Link to={"/login"}>
+              <Button variant={"outline"} label={"Login"} />
+            </Link>
+          )}
         </div>
       </div>
     </nav>
