@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../../shared/Forms/Input";
 import Button from "../../shared/Buttons/Button";
 import { upazillas } from "../../constants/upazillas";
@@ -7,6 +7,11 @@ import toast from "react-hot-toast";
 import Select from "react-select";
 import { districts } from "../../constants/districts";
 import { bloodGroups } from "../../constants";
+import { useCreateUserAccount } from "../../hooks/authMutations";
+import { auth } from "../../provider/AuthProvider";
+import { useImgUpload } from "../../api/imgUpload";
+import { Avatar, Spinner } from "@chakra-ui/react";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   const [bloodGroup, setbloodGroup] = useState("");
@@ -15,8 +20,30 @@ const Register = () => {
   const [selectedDistrict, setSelectedDistrict] = useState(null);
   const [selectedUpazilla, setselectedUpazilla] = useState(null);
 
+  const navigate = useNavigate();
+
   const upazillaByDistrict = (id) => {
     setUpazilla(upazillas.filter((item) => item.district_id == id));
+  };
+
+  const { mutateAsync: createUser, isPending: creatingUser } =
+    useCreateUserAccount();
+
+  const {
+    mutateAsync: uploadImg,
+    isPending: uploadingImg,
+    isSuccess: isImgUploaded,
+    isError: isImgError,
+    error: imgErrorMsg,
+  } = useImgUpload();
+
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      await uploadImg(file).then((res) =>
+        setImageUrl(res?.data?.data?.display_url)
+      );
+    }
   };
 
   const registerHandler = (e) => {
@@ -41,6 +68,19 @@ const Register = () => {
       toast.error("Password doesn't match");
       return;
     }
+
+    createUser({ email, password })
+      .then(() => {
+        updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: imageUrl,
+        });
+        toast.success("Account created successfully");
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (
@@ -53,12 +93,6 @@ const Register = () => {
             type={"text"}
             name={"name"}
             placeholder={"Mehedi"}
-          />
-          <Input
-            label={"Photo URL"}
-            type={"text"}
-            name={"photo"}
-            placeholder={"http://localhost:5173/me.jpg"}
           />
           <Input
             label={"Email"}
@@ -119,13 +153,21 @@ const Register = () => {
           >
             Upload file
           </label>
+          {isImgUploaded && imageUrl && <Avatar src={imageUrl} />}
+          {uploadingImg && <Spinner />}
+          {isImgError && toast.error(imgErrorMsg.message)}
           <input
             className="bg-dark border mt-2 mb-2 border-darker rounded-lg focus:ring-brand-primary focus:border-brand-primary w-full p-2.5"
             id="file_input"
             type="file"
+            onChange={handleFileChange}
           />
 
-          <Button className={"w-full"} variant={"accent"} label={"Register"} />
+          <Button
+            className={"w-full"}
+            variant={creatingUser ? "disabled" : "accent"}
+            label={"Register"}
+          />
 
           <Link className="block text-center" to={"/login"}>
             Already have an account? Login
