@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.heading-1 {
+  @apply text-3xl md:text-4xl lg:text-5xl !leading-tight font-bold;
+}
+
+.heading-2 {
+  @apply text-xl md:text-2xl text-primary font-bold;
+}
+
+.padding {
+  @apply px-4 py-8 md:px-6 md:py-12 lg:px-8 lg:py-16;
+}
+.padding-x {
+  @apply px-4 md:px-6 lg:px-8;
+}
+.padding-y {
+  @apply py-8 md:py-12 lg:py-16;
+}
+
+.ease {
+  @apply transition-all duration-200 ease-in-out;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
