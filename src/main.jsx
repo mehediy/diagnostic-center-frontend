@@ -7,6 +7,7 @@ import { RouterProvider } from "react-router-dom";
 import routes from "./routes/routes";
 import { HelmetProvider } from "react-helmet-async";
 import { ChakraProvider } from "@chakra-ui/react";
+import AuthProvider from "./provider/AuthProvider";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,13 +19,15 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ChakraProvider>
-      <HelmetProvider>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={routes} />
-          <Toaster />
-        </QueryClientProvider>
-      </HelmetProvider>
-    </ChakraProvider>
+    <AuthProvider>
+      <ChakraProvider>
+        <HelmetProvider>
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={routes} />
+            <Toaster />
+          </QueryClientProvider>
+        </HelmetProvider>
+      </ChakraProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
