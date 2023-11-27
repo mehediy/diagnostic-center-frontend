@@ -3,8 +3,7 @@ import { getUsers } from "../../../../api/queries";
 import Row from "./Row";
 
 const Table = () => {
-  const { data: users, isPending, isError, error } = getUsers();
-  console.log(users);
+  const { data: users, isPending, isError, error, refetch } = getUsers();
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -46,7 +45,7 @@ const Table = () => {
             </tr>
           ) : (
             users?.data?.map((user, idx) => (
-              <Row key={idx} idx={idx} user={user} />
+              <Row key={idx} idx={idx} user={user} refetch={refetch} />
             ))
           )}
           {isError && (
