@@ -8,8 +8,17 @@ export const navLinks = [
 export const userDashboardLinks = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/dashboard/profile", label: "Profile" },
-  { href: "/dashboard/upcoming-appointments", label: " Appointments" },
+  { href: "/dashboard/upcoming-appointments", label: "Upcoming Appointments" },
   { href: "/dashboard/test-results", label: " Test Results" },
+];
+
+export const adminDashboardLinks = [
+  { href: "/dashboard", label: "Dashboard" },
+  { href: "/dashboard/add-test", label: " Add Test" },
+  { href: "/dashboard/all-tests", label: "All Tests" },
+  { href: "/dashboard/all-users", label: "All Users" },
+  { href: "/dashboard/reservations", label: "Reservations" },
+  { href: "/dashboard/banners", label: "Banners" },
 ];
 
 export const bloodGroups = [
