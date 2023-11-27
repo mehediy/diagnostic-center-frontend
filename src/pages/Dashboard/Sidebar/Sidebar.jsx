@@ -1,18 +1,14 @@
-import { Link, NavLink } from "react-router-dom";
-import SidebarDrawer from "./SidebarDrawer";
+import { NavLink } from "react-router-dom";
 import { adminDashboardLinks, userDashboardLinks } from "../../../constants";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Sidebar = () => {
-  const isAdmin = false;
+  const { isAdmin } = useAdmin();
   return (
     <>
-      <div className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-200">
-        <SidebarDrawer />
-      </div>
-
       <aside
         id="default-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        className="absolute mt-4 w-64 transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-100 ">

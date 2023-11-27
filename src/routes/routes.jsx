@@ -31,47 +31,47 @@ const routes = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
-    ],
-  },
-  {
-    path: "/dashboard",
-    element: <Dashboard />,
-    children: [
       {
         path: "/dashboard",
-        element: <Overview />,
-      },
-      {
-        path: "all-users",
-        element: <AllUsers />,
-      },
-      {
-        path: "all-tests",
-        element: <AllTest />,
-      },
-      {
-        path: "add-test",
-        element: <AddTest />,
-      },
-      {
-        path: "reservations",
-        element: <Reservations />,
-      },
-      {
-        path: "banners",
-        element: <Banners />,
-      },
-      {
-        path: "profile",
-        element: <Profile />,
-      },
-      {
-        path: "test-results",
-        element: <TestResults />,
-      },
-      {
-        path: "upcoming-appointments",
-        element: <UpcomingAppointments />,
+        element: <Dashboard />,
+        children: [
+          {
+            path: "/dashboard",
+            element: <Overview />,
+          },
+          {
+            path: "all-users",
+            element: <AllUsers />,
+          },
+          {
+            path: "all-tests",
+            element: <AllTest />,
+          },
+          {
+            path: "add-test",
+            element: <AddTest />,
+          },
+          {
+            path: "reservations",
+            element: <Reservations />,
+          },
+          {
+            path: "banners",
+            element: <Banners />,
+          },
+          {
+            path: "profile",
+            element: <Profile />,
+          },
+          {
+            path: "test-results",
+            element: <TestResults />,
+          },
+          {
+            path: "upcoming-appointments",
+            element: <UpcomingAppointments />,
+          },
+        ],
       },
     ],
   },

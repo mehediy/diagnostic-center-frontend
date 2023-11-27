@@ -11,10 +11,12 @@ import React from "react";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { userDashboardLinks } from "../../constants";
+import { adminDashboardLinks, userDashboardLinks } from "../../constants";
+import useAdmin from "../../hooks/useAdmin";
 
 const NavMenu = () => {
   const { user, logoutUser } = useAuth();
+  const { isAdmin } = useAdmin();
   const navigate = useNavigate();
   return (
     <Menu>
@@ -23,11 +25,23 @@ const NavMenu = () => {
       </MenuButton>
       <MenuList>
         <MenuGroup title="My Account">
-          {userDashboardLinks.map((item) => (
-            <MenuItem key={item.label} onClick={() => navigate(`${item.href}`)}>
-              {item.label}
-            </MenuItem>
-          ))}
+          {isAdmin
+            ? adminDashboardLinks.map((item) => (
+                <MenuItem
+                  key={item.label}
+                  onClick={() => navigate(`${item.href}`)}
+                >
+                  {item.label}
+                </MenuItem>
+              ))
+            : userDashboardLinks.map((item) => (
+                <MenuItem
+                  key={item.label}
+                  onClick={() => navigate(`${item.href}`)}
+                >
+                  {item.label}
+                </MenuItem>
+              ))}
         </MenuGroup>
         <MenuDivider />
         <MenuGroup>
