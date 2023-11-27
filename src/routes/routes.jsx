@@ -13,6 +13,8 @@ import Banners from "../pages/Dashboard/Banners/Banners";
 import UpcomingAppointments from "../pages/Dashboard/UpcomingAppointments/UpcomingAppointments";
 import TestResults from "../pages/Dashboard/TestResults/TestResults";
 import Profile from "../pages/Dashboard/Profile/Profile";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 
 const routes = createBrowserRouter([
   {
@@ -37,39 +39,75 @@ const routes = createBrowserRouter([
         children: [
           {
             path: "/dashboard",
-            element: <Overview />,
+            element: (
+              <PrivateRoute>
+                <Overview />
+              </PrivateRoute>
+            ),
           },
           {
             path: "all-users",
-            element: <AllUsers />,
+            element: (
+              <AdminRoute>
+                <AllUsers />
+              </AdminRoute>
+            ),
           },
           {
             path: "all-tests",
-            element: <AllTest />,
+            element: (
+              <AdminRoute>
+                <AllTest />
+              </AdminRoute>
+            ),
           },
           {
             path: "add-test",
-            element: <AddTest />,
+            element: (
+              <AdminRoute>
+                <AddTest />
+              </AdminRoute>
+            ),
           },
           {
             path: "reservations",
-            element: <Reservations />,
+            element: (
+              <AdminRoute>
+                <Reservations />
+              </AdminRoute>
+            ),
           },
           {
             path: "banners",
-            element: <Banners />,
+            element: (
+              <AdminRoute>
+                <Banners />
+              </AdminRoute>
+            ),
           },
           {
             path: "profile",
-            element: <Profile />,
+            element: (
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            ),
           },
           {
             path: "test-results",
-            element: <TestResults />,
+            element: (
+              <PrivateRoute>
+                <TestResults />
+              </PrivateRoute>
+            ),
           },
           {
             path: "upcoming-appointments",
-            element: <UpcomingAppointments />,
+            element: (
+              <PrivateRoute>
+                <UpcomingAppointments />
+              </PrivateRoute>
+            ),
           },
         ],
       },
