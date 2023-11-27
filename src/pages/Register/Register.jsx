@@ -12,6 +12,7 @@ import { auth } from "../../provider/AuthProvider";
 import { useImgUpload } from "../../api/imgUpload";
 import { Avatar, Spinner } from "@chakra-ui/react";
 import { updateProfile } from "firebase/auth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
   const [bloodGroup, setbloodGroup] = useState("");
@@ -19,6 +20,8 @@ const Register = () => {
   const [upazilla, setUpazilla] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
   const [selectedUpazilla, setselectedUpazilla] = useState(null);
+
+  const axiosPublic = useAxiosPublic();
 
   const navigate = useNavigate();
 
@@ -54,15 +57,17 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const password2 = form.password2.value;
+    const district = selectedDistrict.name;
+    const upazilla = selectedUpazilla.name;
 
-    console.log(
+    const userInfo = {
       name,
       email,
-      password,
-      bloodGroup.label,
-      selectedDistrict.name,
-      selectedUpazilla.name
-    );
+      photoURL: imageUrl,
+      bloodGroup: bloodGroup?.label,
+      district,
+      upazilla,
+    };
 
     if (password !== password2) {
       toast.error("Password doesn't match");
@@ -74,9 +79,19 @@ const Register = () => {
         updateProfile(auth.currentUser, {
           displayName: name,
           photoURL: imageUrl,
+        }).then(() => {
+          axiosPublic
+            .post("/users", userInfo)
+            .then((res) => {
+              if (res.data.insertedId) {
+                toast.success("Account created successfully");
+                navigate("/");
+              }
+            })
+            .catch((error) => {
+              toast.error(error.message);
+            });
         });
-        toast.success("Account created successfully");
-        navigate("/");
       })
       .catch((error) => {
         toast.error(error.message);
