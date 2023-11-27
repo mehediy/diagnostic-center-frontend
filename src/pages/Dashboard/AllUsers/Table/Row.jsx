@@ -5,6 +5,14 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { CheckIcon, ChevronDownIcon, NotAllowedIcon } from "@chakra-ui/icons";
@@ -13,6 +21,8 @@ import toast from "react-hot-toast";
 
 const Row = ({ user, idx, refetch }) => {
   const { _id, name, email, role, status, photoURL } = user;
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const { mutateAsync: updateRole, isPending: updatingRole } = useUpdateRole();
   const { mutateAsync: updateStatus, isPending: updatingStatus } =
     useUpdateStatus();
@@ -85,10 +95,26 @@ const Row = ({ user, idx, refetch }) => {
           </MenuList>
         </Menu>
       </td>
+
       <td className="px-6 py-4">
-        <Link to={`#`} className="font-medium text-blue-600  hover:underline">
+        <Link
+          onClick={onOpen}
+          to={`#`}
+          className="font-medium text-blue-600  hover:underline"
+        >
           Details
         </Link>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>User info</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>{/* TODO: Add details */}</ModalBody>
+            <ModalFooter className="space-x-2">
+              <Button onClick={onClose}>Close</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </td>
     </tr>
   );
