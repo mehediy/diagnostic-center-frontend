@@ -31,3 +31,9 @@ export const bloodGroups = [
   { label: "O+" },
   { label: "O-" },
 ];
+
+export const socialLinks = [
+  { href: "#", label: "Facebook" },
+  { href: "#", label: "Instagram" },
+  { href: "#", label: "Youtube" },
+];
