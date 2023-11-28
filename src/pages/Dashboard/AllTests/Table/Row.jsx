@@ -35,7 +35,10 @@ const Row = ({ test, idx, refetch }) => {
         <Button onClick={() => deleteTestHandler(_id)}>Delete</Button>
       </td>
       <td className="px-6 py-4">
-        <Link to={`#`} className="font-medium text-blue-600  hover:underline">
+        <Link
+          to={`/test/${_id}`}
+          className="font-medium text-blue-600  hover:underline"
+        >
           Details
         </Link>
       </td>
