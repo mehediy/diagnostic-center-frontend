@@ -32,6 +32,7 @@ const AddTest = () => {
       price,
       slots,
       details,
+      date,
     };
     try {
       await addTest(values).then((res) => {
@@ -52,7 +53,7 @@ const AddTest = () => {
           <Input
             label={"Test name"}
             type={"text"}
-            name={"title"}
+            name={"name"}
             placeholder={"Complete Blood Count (CBC)"}
           />
           <Input
