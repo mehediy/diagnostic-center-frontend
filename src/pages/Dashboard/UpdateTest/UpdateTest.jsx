@@ -57,7 +57,7 @@ const UpdateTest = () => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-xl pb-4">Add a Test</h1>
+      <h1 className="text-xl pb-4">Update Test</h1>
       <form className="w-full" onSubmit={updateTestHandler}>
         <div className="space-y-4 w-full">
           <Input
