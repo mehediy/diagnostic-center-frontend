@@ -17,10 +17,12 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import UpdateTest from "../pages/Dashboard/UpdateTest/UpdateTest";
 import TestDetails from "../pages/Dashboard/TestDetails/TestDetails";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const routes = createBrowserRouter([
   {
     path: "/",
+    errorElement: <ErrorPage />,
     element: <MainLayout />,
     children: [
       {
