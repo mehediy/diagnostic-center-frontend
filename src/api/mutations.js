@@ -20,3 +20,13 @@ export const useUpdateStatus = () => {
   });
   return mutation;
 };
+
+export const useAddTest = () => {
+  const axiosSecure = useAxiosSecure();
+  const mutation = useMutation({
+    mutationFn: (values) => {
+      return axiosSecure.post("/tests", values);
+    },
+  });
+  return mutation;
+};
