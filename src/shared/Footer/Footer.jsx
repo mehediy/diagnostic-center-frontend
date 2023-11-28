@@ -61,7 +61,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex flex-wrap gap-2 py-4 items-center flex-col justify-center text-light text-sm">
-          <p>© 2023 Jobs. All Rights Reserved.</p>
+          <p>© 2023 Diagnostic. All Rights Reserved.</p>
           <div className="space-x-4">
             <Link to={"#"}>Help</Link>
             <Link to={"#"}>Terms of Service</Link>
