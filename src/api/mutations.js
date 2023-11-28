@@ -21,6 +21,16 @@ export const useUpdateStatus = () => {
   return mutation;
 };
 
+export const useDeleteTest = () => {
+  const axiosSecure = useAxiosSecure();
+  const mutation = useMutation({
+    mutationFn: (id) => {
+      return axiosSecure.delete(`/tests/${id}`);
+    },
+  });
+  return mutation;
+};
+
 export const useAddTest = () => {
   const axiosSecure = useAxiosSecure();
   const mutation = useMutation({

@@ -10,3 +10,11 @@ export const getUsers = () => {
   });
   return users;
 };
+
+export const getTests = () => {
+  const tests = useQuery({
+    queryKey: ["tests"],
+    queryFn: () => axiosSecure.get(`/tests`),
+  });
+  return tests;
+};
