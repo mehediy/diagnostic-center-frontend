@@ -15,6 +15,7 @@ import TestResults from "../pages/Dashboard/TestResults/TestResults";
 import Profile from "../pages/Dashboard/Profile/Profile";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import UpdateTest from "../pages/Dashboard/UpdateTest/UpdateTest";
 
 const routes = createBrowserRouter([
   {
@@ -58,6 +59,14 @@ const routes = createBrowserRouter([
             element: (
               <AdminRoute>
                 <AllTest />
+              </AdminRoute>
+            ),
+          },
+          {
+            path: "all-tests/:id",
+            element: (
+              <AdminRoute>
+                <UpdateTest />
               </AdminRoute>
             ),
           },

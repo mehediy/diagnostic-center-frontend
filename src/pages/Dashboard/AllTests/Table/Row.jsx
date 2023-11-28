@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDeleteTest } from "../../../../api/mutations";
 import toast from "react-hot-toast";
 import { Button } from "@chakra-ui/react";
 
 const Row = ({ test, idx, refetch }) => {
   const { _id, name } = test;
+  const navigate = useNavigate();
 
   const { mutateAsync: deleteTest } = useDeleteTest();
   const deleteTestHandler = async (id) => {
@@ -27,7 +28,9 @@ const Row = ({ test, idx, refetch }) => {
       >
         {name}
       </th>
-      <td className="px-6 py-4">c</td>
+      <td className="px-6 py-4">
+        <Button onClick={() => navigate(`${_id}`)}>Update</Button>
+      </td>
       <td className="px-6 py-4">
         <Button onClick={() => deleteTestHandler(_id)}>Delete</Button>
       </td>

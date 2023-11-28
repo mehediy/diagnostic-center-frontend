@@ -18,3 +18,11 @@ export const getTests = () => {
   });
   return tests;
 };
+
+export const getTest = (id) => {
+  const test = useQuery({
+    queryKey: ["test"],
+    queryFn: () => axiosSecure.get(`/tests/${id}`),
+  });
+  return test;
+};

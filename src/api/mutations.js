@@ -40,3 +40,13 @@ export const useAddTest = () => {
   });
   return mutation;
 };
+
+export const useUpdateTest = () => {
+  const axiosSecure = useAxiosSecure();
+  const mutation = useMutation({
+    mutationFn: ({ id, values }) => {
+      return axiosSecure.put(`/tests/${id}`, values);
+    },
+  });
+  return mutation;
+};
