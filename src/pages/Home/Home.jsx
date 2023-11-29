@@ -1,7 +1,9 @@
+import Banner from "./Hero/Banner";
+
 const Home = () => {
   return (
-    <div className="container mx-auto text-center padding">
-      Under construction
+    <div className="container mx-auto">
+      <Banner />
     </div>
   );
 };
