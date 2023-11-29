@@ -16,7 +16,7 @@ import Profile from "../pages/Dashboard/Profile/Profile";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import UpdateTest from "../pages/Dashboard/UpdateTest/UpdateTest";
-import TestDetails from "../pages/Dashboard/TestDetails/TestDetails";
+import TestDetails from "../pages/TestDetails/TestDetails";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const routes = createBrowserRouter([

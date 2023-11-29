@@ -50,3 +50,13 @@ export const useUpdateTest = () => {
   });
   return mutation;
 };
+
+export const useBookTest = () => {
+  const axiosSecure = useAxiosSecure();
+  const mutation = useMutation({
+    mutationFn: (values) => {
+      return axiosSecure.post(`/bookings/`, values);
+    },
+  });
+  return mutation;
+};
