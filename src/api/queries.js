@@ -19,6 +19,14 @@ export const getTests = () => {
   return tests;
 };
 
+export const getFeaturedTests = () => {
+  const tests = useQuery({
+    queryKey: ["featured-tests"],
+    queryFn: () => axiosSecure.get(`/featured-tests`),
+  });
+  return tests;
+};
+
 export const getTest = (id) => {
   const test = useQuery({
     queryKey: ["test"],
