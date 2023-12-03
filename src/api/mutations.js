@@ -16,7 +16,23 @@ export const useUpdateStatus = () => {
   const axiosSecure = useAxiosSecure();
   const mutation = useMutation({
     mutationFn: ({ id, status }) => {
-      return axiosSecure.patch(`/users/${id}`, { status });
+      return axiosSecure.patch(`/users/${id}`, {
+        status,
+      });
+    },
+  });
+  return mutation;
+};
+
+export const useUpdateReservation = () => {
+  const axiosSecure = useAxiosSecure();
+  const mutation = useMutation({
+    mutationFn: ({ id, status, report, reporting_date }) => {
+      return axiosSecure.put(`/reservations/${id}`, {
+        status,
+        report,
+        reporting_date,
+      });
     },
   });
   return mutation;

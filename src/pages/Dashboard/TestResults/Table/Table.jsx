@@ -1,9 +1,9 @@
 import { Spinner } from "@chakra-ui/react";
-import { getTests } from "../../../../api/queries";
+import { getTestResult } from "../../../../api/queries";
 import Row from "./Row";
 
 const Table = () => {
-  const { data: tests, isPending, isError, error, refetch } = getTests();
+  const { data: tests, isPending, isError, error, refetch } = getTestResult();
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left text-gray-500">
@@ -15,18 +15,15 @@ const Table = () => {
             <th scope="col" className="px-6 py-3">
               Test Name
             </th>
-            <th scope="col" className="px-6 py-3">
-              Appointment Date
-            </th>
 
             <th scope="col" className="px-6 py-3">
-              Update
+              Delivered Date
             </th>
             <th scope="col" className="px-6 py-3">
-              Delete
+              Status
             </th>
             <th scope="col" className="px-6 py-3">
-              Reservations
+              Report
             </th>
           </tr>
         </thead>

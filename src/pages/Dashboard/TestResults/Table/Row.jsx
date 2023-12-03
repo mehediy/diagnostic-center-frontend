@@ -5,19 +5,8 @@ import { formatDate } from "../../../../utils/formatDate";
 import { useBookingStatus } from "../../../../api/mutations";
 import { NotAllowedIcon } from "@chakra-ui/icons";
 
-const Row = ({ test, idx, refetch }) => {
-  const { _id, title, date, status } = test;
-  const navigate = useNavigate();
-
-  const { mutateAsync: cancelBooking } = useBookingStatus();
-  const cancelBookingHandler = async (id, status) => {
-    await cancelBooking({ id, status }).then((res) => {
-      if (res.data.modifiedCount) {
-        toast.success("Cancelled");
-      }
-      refetch();
-    });
-  };
+const Row = ({ test, idx }) => {
+  const { _id, title, reporting_date, status, report } = test;
 
   return (
     <tr className="bg-white border-b ">
@@ -31,18 +20,22 @@ const Row = ({ test, idx, refetch }) => {
         {title}
       </th>
       <td className="px-6 py-4">
-        <div className="flex items-center">{formatDate(date)}</div>
+        <div className="flex items-center">
+          {reporting_date ? formatDate(reporting_date) : ""}
+        </div>
       </td>
       <td className="px-6 py-4">{status}</td>
       <td className="px-6 py-4">
         {status == "cancelled" ? (
           <NotAllowedIcon />
-        ) : status == "delivered" ? (
-          <NotAllowedIcon />
         ) : (
-          <Button onClick={() => cancelBookingHandler(_id, "cancelled")}>
-            Cancel
-          </Button>
+          <a
+            className="font-medium text-blue-600  hover:underline"
+            href={report}
+            target="__blank"
+          >
+            View
+          </a>
         )}
       </td>
     </tr>

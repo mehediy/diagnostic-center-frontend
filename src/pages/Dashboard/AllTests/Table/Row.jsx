@@ -2,9 +2,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDeleteTest } from "../../../../api/mutations";
 import toast from "react-hot-toast";
 import { Button } from "@chakra-ui/react";
+import { formatDate } from "../../../../utils/formatDate";
 
 const Row = ({ test, idx, refetch }) => {
-  const { _id, name } = test;
+  const { _id, name, date } = test;
   const navigate = useNavigate();
 
   const { mutateAsync: deleteTest } = useDeleteTest();
@@ -28,6 +29,7 @@ const Row = ({ test, idx, refetch }) => {
       >
         {name}
       </th>
+      <td>{formatDate(date)}</td>
       <td className="px-6 py-4">
         <Button onClick={() => navigate(`${_id}`)}>Update</Button>
       </td>

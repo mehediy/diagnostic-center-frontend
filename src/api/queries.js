@@ -44,3 +44,20 @@ export const getAppointments = (sort = "") => {
   });
   return test;
 };
+
+export const getReservations = (query = "") => {
+  const test = useQuery({
+    queryKey: ["reservations"],
+    queryFn: () => axiosSecure.get(`/reservations?q=${query}`),
+  });
+  return test;
+};
+
+export const getTestResult = () => {
+  const { user } = useAuth();
+  const test = useQuery({
+    queryKey: ["test-result"],
+    queryFn: () => axiosSecure.get(`/test-result/${user?.email}`),
+  });
+  return test;
+};
