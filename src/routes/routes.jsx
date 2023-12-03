@@ -18,6 +18,7 @@ import AdminRoute from "./AdminRoute";
 import UpdateTest from "../pages/Dashboard/UpdateTest/UpdateTest";
 import TestDetails from "../pages/TestDetails/TestDetails";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import AllTests from "../pages/AllTests/AllTests";
 
 const routes = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const routes = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/all-tests",
+        element: <AllTests />,
       },
       {
         path: "/test/:id",

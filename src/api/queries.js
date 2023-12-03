@@ -11,10 +11,10 @@ export const getUsers = () => {
   return users;
 };
 
-export const getTests = () => {
+export const getTests = (sort = "") => {
   const tests = useQuery({
-    queryKey: ["tests"],
-    queryFn: () => axiosSecure.get(`/tests`),
+    queryKey: ["tests", sort],
+    queryFn: () => axiosSecure.get(`/tests?sort=${sort}`),
   });
   return tests;
 };
