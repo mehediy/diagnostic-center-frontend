@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import useAuth from "../hooks/useAuth";
 
 const axiosSecure = useAxiosSecure();
 
@@ -29,8 +30,17 @@ export const getFeaturedTests = () => {
 
 export const getTest = (id) => {
   const test = useQuery({
-    queryKey: ["test"],
+    queryKey: ["test", id],
     queryFn: () => axiosSecure.get(`/tests/${id}`),
+  });
+  return test;
+};
+
+export const getAppointments = (sort = "") => {
+  const { user } = useAuth();
+  const test = useQuery({
+    queryKey: ["bookings", user?.email],
+    queryFn: () => axiosSecure.get(`/bookings/${user?.email}?sort=${sort}`),
   });
   return test;
 };

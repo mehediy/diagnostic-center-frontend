@@ -33,7 +33,7 @@ const UpdateTest = () => {
     const imageURL = form.imageURL.value;
     const name = form.name.value;
     const price = form.price.value;
-    const slots = form.slots.value;
+    const slots = parseInt(form.slots.value);
     const details = form.details.value;
 
     const values = {
