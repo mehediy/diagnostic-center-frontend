@@ -36,19 +36,20 @@ export const getTest = (id) => {
   return test;
 };
 
-export const getAppointments = (sort = "") => {
+export const getAppointments = (sort) => {
   const { user } = useAuth();
   const test = useQuery({
     queryKey: ["bookings", user?.email],
-    queryFn: () => axiosSecure.get(`/bookings/${user?.email}?sort=${sort}`),
+    queryFn: () =>
+      axiosSecure.get(`/bookings/${user?.email}?sort=${sort || ""}`),
   });
   return test;
 };
 
-export const getReservations = (query = "") => {
+export const getReservations = (query) => {
   const test = useQuery({
     queryKey: ["reservations"],
-    queryFn: () => axiosSecure.get(`/reservations?q=${query}`),
+    queryFn: () => axiosSecure.get(`/reservations?q=${query || ""}`),
   });
   return test;
 };

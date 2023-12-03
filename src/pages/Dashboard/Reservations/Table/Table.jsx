@@ -1,15 +1,20 @@
-import { Spinner } from "@chakra-ui/react";
+import { Button, Spinner } from "@chakra-ui/react";
 import { getReservations } from "../../../../api/queries";
 import Row from "./Row";
+import { useSearchParams } from "react-router-dom";
+import Input from "../../../../shared/Forms/Input";
 
 const Table = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get("search");
+
   const {
     data: reservation,
     isPending,
     isError,
     error,
     refetch,
-  } = getReservations();
+  } = getReservations(searchQuery);
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">

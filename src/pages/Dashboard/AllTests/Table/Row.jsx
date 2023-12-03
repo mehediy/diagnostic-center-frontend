@@ -38,7 +38,7 @@ const Row = ({ test, idx, refetch }) => {
       </td>
       <td className="px-6 py-4">
         <Link
-          to={`/test/${_id}`}
+          to={`/dashboard/reservations?search=${name}`}
           className="font-medium text-blue-600  hover:underline"
         >
           Details
