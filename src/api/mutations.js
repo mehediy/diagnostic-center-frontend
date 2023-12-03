@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import useAuth from "../hooks/useAuth";
 
 export const useUpdateRole = () => {
   const axiosSecure = useAxiosSecure();
@@ -56,6 +57,17 @@ export const useBookTest = () => {
   const mutation = useMutation({
     mutationFn: (values) => {
       return axiosSecure.post(`/bookings/`, values);
+    },
+  });
+  return mutation;
+};
+
+export const useBookingStatus = () => {
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  const mutation = useMutation({
+    mutationFn: ({ id, status }) => {
+      return axiosSecure.patch(`/bookings/${user?.email}/${id}`, { status });
     },
   });
   return mutation;
