@@ -85,7 +85,7 @@ const Register = () => {
             .then((res) => {
               if (res.data.insertedId) {
                 toast.success("Account created successfully");
-                navigate("/");
+                navigate("/dashboard");
               }
             })
             .catch((error) => {

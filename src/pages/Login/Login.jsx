@@ -21,7 +21,7 @@ const Login = () => {
     loginUser(user)
       .then((userCredential) => {
         // Signed in
-        navigate(location?.state ? location.state : "/");
+        navigate(location?.state ? location.state : "/dashboard");
         toast.success("Successfully logged in!");
       })
       .catch((error) => {
