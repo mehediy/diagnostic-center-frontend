@@ -19,6 +19,10 @@
   - All tests (can update, delete)
   - Reservations (cancel, deliver report)
 
+### Technology Used
+
+![Tech](https://skillicons.dev/icons?i=react,nodejs,express,mongo,firebase,tailwind)
+
 #### Upcoming features
 
 - Profile Management
